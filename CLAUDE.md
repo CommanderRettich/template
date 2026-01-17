@@ -187,8 +187,11 @@ NEXT_PUBLIC_URL=               # App URL for redirects
 npm run dev              # Start dev server
 
 # Quality Checks
-npx tsc --noEmit         # TypeScript check
+npm run typecheck        # TypeScript check (no emit)
 npm run lint             # ESLint check
+npm run lint:fix         # ESLint with auto-fix
+npm run format:check     # Check Prettier formatting
+npm run format           # Fix Prettier formatting
 
 # Build
 npm run build            # Production build
