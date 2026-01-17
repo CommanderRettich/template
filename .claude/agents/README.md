@@ -1,12 +1,12 @@
 # Wie nutze ich die AI Agents?
 
-## ⚠️ Wichtig: Das sind KEINE Claude Code Skills!
+> **Wichtig:** Das sind KEINE Claude Code Skills!
+> Die Agent-Files in `.claude/agents/` sind keine registrierten Skills im Claude Code System.
+> Du kannst sie nicht mit `/requirements-engineer` aufrufen.
 
-Die Agent-Files in `.claude/agents/` sind **keine registrierten Skills** im Claude Code System.
+---
 
-Du kannst sie **nicht** mit `/requirements-engineer` aufrufen.
-
-## ✅ So nutzt du die Agents richtig:
+## So nutzt du die Agents richtig
 
 ### Methode 1: Referenziere die Agent-Files im Chat (Empfohlen)
 
@@ -23,8 +23,6 @@ Ich möchte ein User-Authentifizierung Feature bauen.
 - Befolgt den Workflow (inkl. AskUserQuestion für interaktive Fragen!)
 - Erstellt Output wie im Agent definiert
 
----
-
 ### Methode 2: Copy-Paste Agent-Instructions in Custom Prompts
 
 1. Öffne `.claude/agents/requirements-engineer.md`
@@ -39,72 +37,62 @@ Jetzt erstelle eine Feature Spec für: [deine Feature-Idee]
 
 ---
 
-## 🎯 Best Practice Workflow
+## Best Practice Workflow
 
 ### Phase 1: Requirements
 
-```markdown
+```
 Hey Claude, lies .claude/agents/requirements-engineer.md und handle danach.
 
 Ich möchte ein Kanban-Board Feature für mein Projekt bauen.
 User sollen Tasks zwischen Columns verschieben können (Drag & Drop).
 ```
 
-**Claude wird:**
-1. ✅ `AskUserQuestion` nutzen für interaktive Single/Multiple-Choice Fragen
-2. ✅ Edge Cases klären (mit AskUserQuestion)
-3. ✅ Feature Spec erstellen in `/features/PROJ-X.md`
-4. ✅ Finale Approval fragen (mit AskUserQuestion)
-
----
+Claude wird:
+- ✅ AskUserQuestion nutzen für interaktive Single/Multiple-Choice Fragen
+- ✅ Edge Cases klären (mit AskUserQuestion)
+- ✅ Feature Spec erstellen in `/features/PROJ-X.md`
+- ✅ Finale Approval fragen (mit AskUserQuestion)
 
 ### Phase 2: Architecture
 
-```markdown
+```
 Hey Claude, lies .claude/agents/solution-architect.md und handle danach.
 
 Lies die Feature Spec in /features/PROJ-1-kanban-board.md und
 designe die Tech-Infrastruktur (Database Schema, Components, APIs).
 ```
 
-**Claude wird:**
-1. ✅ Feature Spec lesen
-2. ✅ Fragen stellen (mit AskUserQuestion)
-3. ✅ Database Schema + Component Tree + API Endpoints designen
-4. ✅ Spec erweitern mit Tech-Design
-
----
+Claude wird:
+- ✅ Feature Spec lesen
+- ✅ Fragen stellen (mit AskUserQuestion)
+- ✅ Database Schema + Component Tree + API Endpoints designen
+- ✅ Spec erweitern mit Tech-Design
 
 ### Phase 3: Implementation
 
-```markdown
+```bash
 # Frontend:
 Hey Claude, lies .claude/agents/frontend-dev.md und handle danach.
-
 Lies /features/PROJ-1-kanban-board.md und baue die UI Components.
 
 # Backend:
 Hey Claude, lies .claude/agents/backend-dev.md und handle danach.
-
 Lies /features/PROJ-1-kanban-board.md und baue die APIs + Database.
 ```
 
----
-
 ### Phase 4: Testing
 
-```markdown
+```
 Hey Claude, lies .claude/agents/qa-engineer.md und handle danach.
 
 Teste das Kanban-Board Feature gegen die Acceptance Criteria
 in /features/PROJ-1-kanban-board.md.
 ```
 
----
-
 ### Phase 5: Deployment
 
-```markdown
+```
 Hey Claude, lies .claude/agents/devops.md und handle danach.
 
 Deploy das Projekt zu Vercel (Production).
@@ -112,7 +100,7 @@ Deploy das Projekt zu Vercel (Production).
 
 ---
 
-## 💡 Pro-Tipps
+## Pro-Tipps
 
 ### 1. Voice-First Development (empfohlen!)
 
@@ -141,13 +129,11 @@ Kannst du mit mir durchgehen, wie wir das am besten umsetzen?"
 - Mehr Context automatisch
 - Natürlicher Flow
 
----
-
 ### 2. Nutze Plan Mode für komplexe Features
 
 Für größere Features:
 
-```markdown
+```
 Hey Claude, bitte starte im Plan Mode.
 
 Lies .claude/agents/requirements-engineer.md und erstelle
@@ -159,13 +145,11 @@ eine Feature Spec für [komplexes Feature].
 - Stellt durchdachte Fragen
 - User approved Plan bevor Implementation
 
----
-
 ### 3. Agents in Serie nutzen
 
 Ein Feature komplett durchbauen:
 
-```markdown
+```
 Phase 1: Lies .claude/agents/requirements-engineer.md → Erstelle Spec
 [Warte auf Output]
 
@@ -188,43 +172,40 @@ Phase 6: Lies .claude/agents/devops.md → Deploy
 
 ---
 
-## 🔄 Warum `.claude/agents/` statt `.claude/skills/`?
+## Warum .claude/agents/ statt .claude/skills/?
 
-**Skills** sind registrierte Commands im Claude Code System (z.B. `/commit`, `/review-pr`).
+- **Skills** sind registrierte Commands im Claude Code System (z.B. `/commit`, `/review-pr`).
+- **Agents** in diesem Template sind Prompt-Templates / Role-Definitions.
 
-**Agents** in diesem Template sind **Prompt-Templates** / **Role-Definitions**.
-
-Sie sind **nicht** im System registriert, aber genauso mächtig wenn du sie referenzierst!
-
----
-
-## ⚡ Quick Reference
-
-### Development Workflow Agents
-
-| Agent | File | Wann nutzen? |
-|-------|------|--------------|
-| **Requirements Engineer** | `.claude/agents/requirements-engineer.md` | Feature-Idee → Spec |
-| **Solution Architect** | `.claude/agents/solution-architect.md` | Spec → Tech-Design |
-| **Frontend Developer** | `.claude/agents/frontend-dev.md` | Design → UI Components |
-| **Backend Developer** | `.claude/agents/backend-dev.md` | Design → APIs + DB |
-| **QA Engineer** | `.claude/agents/qa-engineer.md` | Implementation → Testing |
-| **DevOps** | `.claude/agents/devops.md` | Tested → Production |
-
-### Quality & Management Agents
-
-| Agent | File | Wann nutzen? |
-|-------|------|--------------|
-| **Security Reviewer** | `.claude/agents/security-reviewer.md` | Security Audit (OWASP, RLS, API Security) |
-| **Code Reviewer** | `.claude/agents/code-reviewer.md` | Code Review (Best Practices, Performance) |
-| **Project Manager** | `.claude/agents/project-manager.md` | Sprint Planning, Status Tracking |
-| **Database Migration** | `.claude/agents/database-migration.md` | Supabase Migrations, RLS Policies |
+Sie sind nicht im System registriert, aber genauso mächtig wenn du sie referenzierst!
 
 ---
 
-## 🎓 Beispiel: Kompletter Workflow
+## Quick Reference
 
-**Feature:** User-Authentifizierung
+### Development Workflow
+| Agent | File | Wann nutzen? |
+|-------|------|--------------|
+| Requirements Engineer | `.claude/agents/requirements-engineer.md` | Feature-Idee → Spec |
+| Solution Architect | `.claude/agents/solution-architect.md` | Spec → Tech-Design |
+| Frontend Developer | `.claude/agents/frontend-dev.md` | Design → UI Components |
+| Backend Developer | `.claude/agents/backend-dev.md` | Design → APIs + DB |
+| QA Engineer | `.claude/agents/qa-engineer.md` | Implementation → Testing |
+| DevOps | `.claude/agents/devops.md` | Tested → Production |
+
+### Quality & Management
+| Agent | File | Wann nutzen? |
+|-------|------|--------------|
+| Security Reviewer | `.claude/agents/security-reviewer.md` | Security Audit, OWASP Checks |
+| Code Reviewer | `.claude/agents/code-reviewer.md` | PR Reviews, Best Practices |
+| Project Manager | `.claude/agents/project-manager.md` | Sprint Planning, Status Updates |
+| Database Migration | `.claude/agents/database-migration.md` | Supabase Migrations, RLS Policies |
+
+---
+
+## Beispiel: Kompletter Workflow
+
+**Feature: User-Authentifizierung**
 
 ### 1. Requirements (5-10 Min)
 
@@ -234,15 +215,13 @@ Hey Claude, lies .claude/agents/requirements-engineer.md und handle danach.
 Ich möchte User-Authentifizierung bauen.
 ```
 
-**Claude antwortet mit AskUserQuestion:**
+Claude antwortet mit AskUserQuestion:
 - Zielgruppe? (Single/Multiple-Choice)
 - MVP Features? (Multiple-Choice: Email, Google OAuth, etc.)
 - Session-Persistence? (Single-Choice: Ja/Nein/Remember Me)
 - Edge Cases? (Was bei doppelter Email?)
 
 **Output:** `/features/PROJ-1-user-authentication.md`
-
----
 
 ### 2. Architecture (5 Min)
 
@@ -254,8 +233,6 @@ Lies /features/PROJ-1-user-authentication.md und designe die Infrastruktur.
 
 **Output:** Database Schema + Component Tree + API Endpoints
 
----
-
 ### 3. Frontend (15 Min)
 
 ```
@@ -265,8 +242,6 @@ Lies /features/PROJ-1-user-authentication.md und baue die UI.
 ```
 
 **Output:** Login Form, Signup Form, Password Reset Components
-
----
 
 ### 4. Backend (15 Min)
 
@@ -278,8 +253,6 @@ Lies /features/PROJ-1-user-authentication.md und baue die APIs.
 
 **Output:** Supabase Migrations, RLS Policies, API Routes
 
----
-
 ### 5. Testing (10 Min)
 
 ```
@@ -289,8 +262,6 @@ Teste PROJ-1 gegen Acceptance Criteria.
 ```
 
 **Output:** Test-Report mit Bugs (falls vorhanden)
-
----
 
 ### 6. Deployment (5 Min)
 
@@ -302,13 +273,11 @@ Deploy zu Vercel.
 
 **Output:** Production URL
 
----
-
-**Gesamt:** ~55 Minuten für production-ready Feature 🚀
+**Gesamt: ~55 Minuten für production-ready Feature**
 
 ---
 
-## 🆘 Troubleshooting
+## Troubleshooting
 
 ### "Claude ignoriert die Agent-Instructions"
 
@@ -318,8 +287,6 @@ Deploy zu Vercel.
 Hey Claude, lies GENAU die Datei .claude/agents/requirements-engineer.md
 und befolge ALLE Anweisungen darin, inklusive der Nutzung von AskUserQuestion!
 ```
-
----
 
 ### "AskUserQuestion wird nicht genutzt"
 
@@ -332,8 +299,6 @@ WICHTIG: Nutze das AskUserQuestion Tool für alle Fragen
 (Single/Multiple-Choice statt Text-Fragen)!
 ```
 
----
-
 ### "Zu viele Fragen auf einmal"
 
 **Lösung:** Claude sollte max. 3-4 Fragen pro AskUserQuestion Batch stellen.
@@ -345,7 +310,7 @@ Bitte stelle nicht mehr als 3 Fragen gleichzeitig.
 
 ---
 
-## ✅ Ready to start!
+## Ready to start!
 
 Probier es aus:
 
@@ -354,5 +319,3 @@ Hey Claude, lies .claude/agents/requirements-engineer.md und handle danach.
 
 Ich möchte [deine Feature-Idee].
 ```
-
-Viel Erfolg! 🚀
