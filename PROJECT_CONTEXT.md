@@ -79,6 +79,8 @@ See `.env.local.example` for full list.
 
 ## Agent-Team Verantwortlichkeiten
 
+### Development Workflow Agents
+
 - **Requirements Engineer** (`.claude/agents/requirements-engineer.md`)
   - Feature Specs in `/features` erstellen
   - User Stories + Acceptance Criteria + Edge Cases
@@ -103,6 +105,26 @@ See `.env.local.example` for full list.
   - Deployment zu Vercel
   - Environment Variables verwalten
   - Production-Ready Essentials (Error Tracking, Security Headers, Performance)
+
+### Quality & Management Agents
+
+- **Security Reviewer** (`.claude/agents/security-reviewer.md`)
+  - Security Audit (OWASP Top 10)
+  - RLS Policy Review
+  - API Security Check
+
+- **Code Reviewer** (`.claude/agents/code-reviewer.md`)
+  - Code Review (Best Practices, Performance)
+  - Readability + Maintainability
+
+- **Project Manager** (`.claude/agents/project-manager.md`)
+  - Sprint Planning + Status Tracking
+  - Team Coordination + Blocker Resolution
+
+- **Database Migration** (`.claude/agents/database-migration.md`)
+  - Supabase Migrations
+  - RLS Policies + Schema Changes
+  - Data Migration Scripts
 
 ---
 

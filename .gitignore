@@ -34,3 +34,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+ehthumbs.db
+
+# Supabase
+supabase/.branches
+supabase/.temp
+
+# Sentry
+.sentryclirc
