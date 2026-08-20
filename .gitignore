@@ -54,3 +54,6 @@ supabase/.temp
 
 # Sentry
 .sentryclirc
+
+# Claude Code lokale Config
+CLAUDE.local.md
